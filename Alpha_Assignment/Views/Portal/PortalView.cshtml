@@ -15,11 +15,11 @@
         </div>
         <div class="portal-forms">
             @if (isLogIn) {
-                @Html.PartialAsync("_LoginForm")
+                @await Html.PartialAsync("Partials/_LoginFormPartial")
             }
             else
             {
-                @Html.PartialAsync("_SignUpForm")
+                @await Html.PartialAsync("Partials/_SignUpFormPartial")
             }
         </div>
         <button type="button" class="btn btn-primary">
