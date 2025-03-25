@@ -1,0 +1,419 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+:root {
+    --portal-bg: #EAECF0;
+    --alpha-bg: #F1F3F7;
+    --heading: #1A1926;
+    --body-dark: #28263B;
+    --body-light: #637085;
+    --border-100: #e4e7eb;
+    --border-200: #E3E5E8;
+    --grey-100: #F5F7FA;
+    --surface: #fff;
+    --accent: rgb(45, 153, 255);
+    --red: #FF6640;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Nunito", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    color: var(--body-dark);
+}
+
+h1, h2, h3, h6 {
+    color: var(--heading);
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+h6 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+p {
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+
+.btn {
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 10px;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--accent);
+}
+
+/* Login / Create account view */
+.portal {
+    background-color: var(--portal-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+    min-height: 100dvh;
+}
+
+.portal-module {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 50px 50px 20px 50px;
+    width: 40dvw;
+}
+.portal-module a {
+    text-decoration: none;
+}
+
+.portal-forms, .modal-form {
+    display: flex;
+    text-align: start;
+    flex-direction: column;
+    gap: 1.8rem;
+    font-size: 0.8rem;
+}
+.portal-forms input:focus, .modal-form input:focus {
+      box-shadow: none;
+}
+.portal-forms .form-label, .modal-form .form-label {
+    font-weight: 600;
+    color: var(--heading);
+}
+
+.portal-forms .form-control, .modal-form .form-control {
+    font-size: 0.7rem;
+    color: var(--body-light);
+    padding: 10px;
+    border-color: var(--border-100);
+    border-radius: 8px;
+}
+
+.portal-forms .form-check-label, .modal-form .form-check-label {
+    color: var(--body-dark);
+}
+
+.google {
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+.google img {
+    align-self: center;
+}
+
+
+.separator {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+}
+.separator p {
+    align-self: center;
+    margin: 0 10px;
+    color: var(--body-light);
+    font-size: 0.6rem;
+}
+
+.separator hr {
+    color: var(--border-100);
+}
+
+
+/* Alpha view */
+
+.alpha {
+    background-color: var(--alpha-bg);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "side top" "side main";
+    min-height: 100dvh;
+}
+.alpha .side-menu {
+    grid-area: side;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-right: 1px solid var(--border-200);
+}
+.alpha .side-menu .logo-place {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.alpha .side-menu .logo-text {
+    font-family: "Comfortaa", sans-serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--body-dark);
+    margin: 0;
+}
+
+.alpha .side-menu .menu {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    background-color: rgba(45, 153, 255, 0.1);
+    border-radius: 12px;
+    padding: 10px 70px 10px 20px;
+}
+.alpha .side-menu .menu p {
+    margin: 0;
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.alpha .top-menu {
+    grid-area: top;
+    border-bottom: 1px solid var(--border-200);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    padding: 0.5rem 1rem;
+}
+.alpha .top-menu .search-place {
+    display: flex;
+}
+.alpha .top-menu .search-place .form-control {
+    font-size: 0.7rem;
+    color: var(--body-light);
+    border: none;
+    background: none;
+}
+
+.alpha .top-menu .search-place img {
+    width: 1rem;
+}
+
+.alpha .top-menu .right-menu {
+    align-items: center;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: end;
+    column-gap: 1.8rem;
+}
+.alpha .top-menu .right-menu .avatar-separator {
+    border-left: 1px solid var(--border-200);
+    height: 70%;
+}
+
+.alpha .top-menu p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.alpha .top-menu .semibold {
+    font-weight: 600;
+}
+
+.alpha .main-content {
+    grid-area: main;
+    padding: 30px 20px;
+}
+.alpha .main-content .main-area {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.alpha .main-content .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.alpha .main-content .add-project-btn {
+    display: flex;
+    gap: 0.7rem;
+}
+
+.alpha .main-content .project-menu {
+    display: flex;
+    gap: 1.8rem;
+    border-bottom: 1px solid var(--border-200);
+}
+.alpha .main-content .project-menu p {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--body-light);
+    margin: 0;
+    padding-bottom: 0.5rem;
+}
+
+.alpha .main-content .project-menu p:active {
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+}
+
+/*Projects*/
+
+.project-components {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+.project-components .project-card {
+    flex-grow: 1;
+    border-radius: 16px;
+    background-color: var(--surface);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.project-components .card-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1rem;
+}
+.project-components .card-header h6 {
+    margin: 0;
+}
+
+.project-components .card-header p {
+    margin: 0;
+}
+
+.project-components .card-header .delete {
+    color: var(--red);
+}
+
+.project-components .card-header .separator {
+    border-bottom: 1px solid var(--border-100);
+    margin: 0.2rem 1rem;
+}
+
+
+.more-menu {
+    align-self: flex-start;
+}
+.more-menu .more-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.more-menu .more-btn:active, .more-menu .more-btn:hover {
+    background-color: var(--grey-100);
+}
+
+.more-menu .dropdown-menu {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border: none;
+    border-radius: 8px;
+}
+.more-menu .dropdown-menu li {
+    padding: 0.2rem 1rem;
+}
+
+.more-menu .dropdown-item {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    border-radius: 8px;
+    display: flex;
+    gap: 0.5rem;
+    box-sizing: border-box;
+}
+
+.more-menu .dropdown-item:hover {
+    background-color: var(--grey-100);
+}
+
+/* Modal */
+.modal .modal-header {
+    border-bottom: none;
+}
+.modal .modal-header .btn-close {
+    font-size: 0.8rem;
+    color: var(--heading);
+}
+
+.modal .modal-footer {
+    border-top: none;
+}
+.modal .modal-footer .btn {
+width: 100%;
+}
+
+.modal .modal-body .modal-img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.modal .modal-body .date-pickers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.modal .modal-body .budget {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.modal .modal-body .budget .dollar-icon {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+}
+
+.modal .modal-body .budget .budget-form {
+    padding-left: 2.5rem;
+}
+
+.modal .modal-body .subscribe-form {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.modal .modal-body .subscribe-form button {
+    border-radius: 0 8px 8px 0;
+}
+
+.modal .modal-body .subscribe-form .fa-envelope {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    color: var(--color-grey-500);
+}
