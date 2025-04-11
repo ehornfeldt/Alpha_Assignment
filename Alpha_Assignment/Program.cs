@@ -1,4 +1,26 @@
+using Data.Contexts;
+using Data.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection")));
+builder.Services.AddIdentity<UserEntity, IdentityRole>(x =>
+{
+    x.User.RequireUniqueEmail = true;
+    x.Password.RequiredLength = 12;
+}).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+builder.Services.ConfigureApplicationCookie(x =>
+{
+    x.LoginPath = "/auth/signin";
+    x.AccessDeniedPath = "/auth/denied";
+    x.Cookie.HttpOnly = true;
+    x.Cookie.IsEssential = true;
+    x.Cookie.Expiration = TimeSpan.FromHours(1);
+    x.SlidingExpiration = true;
+});
 
 builder.Services.AddControllersWithViews();
 var app = builder.Build();
@@ -6,8 +28,13 @@ var app = builder.Build();
 app.UseHsts();
 app.UseHttpsRedirection();
 app.UseRouting();
+
+app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapStaticAssets();
+
+//app.UseRewriter(new RewriteOptions().AddRedirect("^$", "/admin/overview"));
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")

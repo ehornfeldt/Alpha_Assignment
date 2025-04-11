@@ -6,6 +6,6 @@ public class UserEntity : IdentityUser
 {
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
-    public string? EmailAddress { get; set; }
+    public string? JobTitle { get; set; }
     public ICollection<ProjectEntity> Projects { get; set; } = [];
 }
