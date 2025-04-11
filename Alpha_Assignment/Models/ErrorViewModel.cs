@@ -1,4 +1,4 @@
-namespace Alpha_Assignment.Models
+namespace Presentation.Models
 {
     public class ErrorViewModel
     {

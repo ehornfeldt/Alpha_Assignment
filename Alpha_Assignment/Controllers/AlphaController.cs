@@ -2,10 +2,9 @@
 
 namespace Presentation.Controllers
 {
-    public class PortalController : Controller
+    public class AlphaController : Controller
     {
-        [Route("signin")]
-        public IActionResult PortalView()
+        public IActionResult AlphaView()
         {
             return View();
         }

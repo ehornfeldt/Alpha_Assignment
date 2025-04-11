@@ -1,0 +1,35 @@
+﻿<div class="project-card">
+    <div class="card-header">
+        <img src="./src/assets/card-icon.svg" alt="project logo" />
+        <div class="project-name">
+            <h6>{title}</h6>
+            <p>{app}</p>
+        </div>
+        <div class="more-menu">
+            <button type="button" class="more-btn" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="./src/assets/more.svg" alt="more icon" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                    <p class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#editProjectModal">
+                        <img src="./src/assets/edit-pen.svg" alt="edit pen icon" />
+                        Edit
+                    </p>
+                </li>
+                <div class="separator"></div>
+                <li>
+                    <p clasclasssName="dropdown-item delete" type="button">
+                        <img src="./src/assets/trash.svg" alt="trash icon" />
+                        Delete Project
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="card-content">
+        <p>{content}</p>
+    </div>
+
+    @* <Modal title="Edit Project" btnText={"Save Changes"} modalId="editProjectModal" /> *@
+
+</div>

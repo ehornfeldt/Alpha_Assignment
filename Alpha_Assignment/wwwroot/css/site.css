@@ -155,7 +155,9 @@ p {
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: auto 1fr;
-    grid-template-areas: "side top" "side main";
+    grid-template-areas: 
+        "side top" 
+        "side main";
     min-height: 100dvh;
 }
 .alpha .side-menu {
@@ -202,6 +204,7 @@ p {
     grid-template-columns: auto 1fr;
     padding: 0.5rem 1rem;
 }
+
 .alpha .top-menu .search-place {
     display: flex;
 }
@@ -238,10 +241,11 @@ p {
     font-weight: 600;
 }
 
-.alpha .main-content {
-    grid-area: main;
-    padding: 30px 20px;
-}
+    .alpha .main-content {
+        grid-area: main;
+        display: grid;
+        padding: 30px 20px;
+    }
 .alpha .main-content .main-area {
     display: flex;
     flex-direction: column;

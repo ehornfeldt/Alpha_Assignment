@@ -1,8 +1,8 @@
 using System.Diagnostics;
-using Alpha_Assignment.Models;
+using Presentation.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Alpha_Assignment.Controllers
+namespace Presentation.Controllers
 {
     public class HomeController : Controller
     {
