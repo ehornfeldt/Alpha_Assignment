@@ -4,7 +4,7 @@ using Domain.Models;
 
 namespace Data.Repositories;
 
-public interface IClientRepository : IBaseRepository<ClientEntity>
+public interface IClientRepository : IBaseRepository<ClientEntity, Client>
 {
 }
 
