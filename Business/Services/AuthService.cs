@@ -7,7 +7,14 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Business.Services;
 
-public class AuthService(IUserService userService, SignInManager<UserEntity> signInManager)
+public interface IAuthService
+{
+    Task<AuthResult> SignInAsync(SignInFormData formData);
+    Task<AuthResult> SignOutAsync();
+    Task<AuthResult> SignUpAsync(SignUpFormData formData);
+}
+
+public class AuthService(IUserService userService, SignInManager<UserEntity> signInManager) : IAuthService
 {
     private readonly IUserService _userService = userService;
     private readonly SignInManager<UserEntity> _signInManager = signInManager;
@@ -33,7 +40,7 @@ public class AuthService(IUserService userService, SignInManager<UserEntity> sig
         var result = await _userService.CreateUserAsync(formData);
         return result.Succeeded
                 ? new AuthResult { Succeeded = true, StatusCode = 201 }
-                : new AuthResult { Succeeded = false, StatusCode = result.StatusCode, Error =  result.Error };
+                : new AuthResult { Succeeded = false, StatusCode = result.StatusCode, Error = result.Error };
     }
 
     public async Task<AuthResult> SignOutAsync()
