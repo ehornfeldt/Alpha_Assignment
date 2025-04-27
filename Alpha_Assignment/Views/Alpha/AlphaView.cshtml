@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ProjectsViewModel
+@{
     ViewData["Title"] = "Alpha View";
 }
 <div class="alpha">
@@ -58,8 +59,24 @@
                 <p>STARTED[8]</p>
                 <p>COMPLETED[0]</p>
             </div>
-            <div class="project-components">project card</div>
+            <div class="project-components">
+				@if (Model.Projects != null && Model.Projects.Any())
+				{
+				    @foreach (var project in Model.Projects)
+				    {
+					    @await Html.PartialAsync("Partials/_ProjectCardPartial", project)
+                        @await Html.PartialAsync("Partials/_EditProjectModalPartial", new EditProjectViewModel
+                        {
+                            Id = project.Id,
+                            ProjectName = project.ProjectName,
+                        })
+				    }
+				}
+            </div>
         </div>
     </div>
 </div>
+
+@await Html.PartialAsync("Partials/_AddProjectModalPartial", Model.AddProjectFormData)
+@* @await Html.PartialAsync("Partials/_EditProjectModalPartial", Model.EditProjectFormData) *@
 
