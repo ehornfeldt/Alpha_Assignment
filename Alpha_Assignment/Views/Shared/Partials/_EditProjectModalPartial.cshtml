@@ -16,25 +16,19 @@
                         <label class="form-label">Project Name</label>
 						<input class="form-control" placeholder="Project Name" asp-for="ProjectName" />
                     </div>
+
                     <div class="form-group">
-                        <label class="form-label">Client Name</label> <label class="form-label">Client Name</label>
-                        <div class="form-select" data-placeholder="Select client">
-                            <button type="button" class="form-select-trigger">
-                                <span class="form-select-text"></span>
-                            </button>
-                            <ul class="form-select-options">
-                                @foreach (var option in Model.Clients)
-                                {
-                                    <li class="form-select-option" data-value="@option.Value">@option.Text</li>
-                                }
-                            </ul>
-                        </div><input class="form-control" placeholder="Client Name" />
+                        <label class="form-label">Client Name</label>
+                        <select class="form-control" asp-for="ClientId" asp-items="Model.Clients">
+                            <option value="" disabled>Select client</option>
+                        </select>
                     </div>
+
                     <div class="form-group">
                         <label class="form-label">Description</label>
                         @* <textarea class="form-control" placeholder="Type something" /> *@
                         <div class="wysiwyg">
-                            <textarea id="add-project-description"></textarea>
+                            <textarea id="add-project-description" asp-for="Description"></textarea>
                             <div id="add-project-description-wysiwyg-editor" class="wysiwyg-editor"></div>
                             <div id="add-project-description-wysiwyg-toolbar" clasclasssName="wysiwyg-toolbar">
                                 <span class="ql-formats">
@@ -67,11 +61,11 @@
                     <div class="date-pickers">
                         <div class="form-group">
                             <label class="form-label" for="startDate">Start Date</label>
-                            <input id="startDate" class="form-control" type="date" />
+                            <input id="startDate" class="form-control" type="date" asp-for="StartDate" />
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="startDate">End Date</label>
-                            <input id="startDate" class="form-control" type="date" />
+                            <input id="startDate" class="form-control" type="date" asp-for="EndDate" />
                         </div>
                     </div>
 
@@ -79,7 +73,7 @@
                         <label class="form-label" for="startDate">Budget</label>
                         <div class="budget">
                             <img class="dollar-icon" src="assets/dollar-icon.svg" alt="dollar icon" />
-                            <input type="text" class="form-control budget-form" aria-label="Amount (to the nearest dollar)" />
+                            <input type="text" class="form-control budget-form" aria-label="Amount (to the nearest dollar)" asp-for="Budget" />
                         </div>
                     </div>
                 </div>

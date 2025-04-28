@@ -34,7 +34,11 @@ public class AlphaController : Controller
             Image = "/assets/card-icon.svg",
             ProjectName = "Project 1",
             Description = "Description for project 1",
-            ClientName = "Github corp."
+            ClientName = "Github corp.",
+            ClientId = "1",
+            Clients = SetClients(),
+            StartDate = DateTime.Now,
+            Budget = 1000,
         });
 
         projects.Add(new ProjectViewModel
@@ -43,7 +47,11 @@ public class AlphaController : Controller
             Image = "/assets/card-icon.svg",
             ProjectName = "Project 2",
             Description = "Description for project 2",
-            ClientName = "Gitlab inc."
+            ClientName = "Gitlab inc.",
+            ClientId = "2",
+            Clients = SetClients(),
+            StartDate = DateTime.Now,
+            Budget = 2000,
         });
 
         return projects;
@@ -54,12 +62,12 @@ public class AlphaController : Controller
         var clients = new List<SelectListItem>();
         clients.Add(new SelectListItem
         {
-            Value = Guid.NewGuid().ToString(),
+            Value = "1",
             Text = "Github corp."
         });
         clients.Add(new SelectListItem
         {
-            Value = Guid.NewGuid().ToString(),
+            Value = "2",
             Text = "Gitlab inc."
         });
         return clients;

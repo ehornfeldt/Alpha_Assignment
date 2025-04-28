@@ -119,6 +119,15 @@ p {
     border-radius: 8px;
 }
 
+
+    .modal-form  select.form-control {
+        appearance: auto;
+    }
+    .modal-form select.form-control:focus {
+        box-shadow: none;
+    }
+
+
 .portal-forms .form-check-label, .modal-form .form-check-label {
     color: var(--body-dark);
 }

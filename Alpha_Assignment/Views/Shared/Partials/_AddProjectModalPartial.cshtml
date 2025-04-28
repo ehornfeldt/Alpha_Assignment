@@ -16,19 +16,14 @@
                         <label class="form-label">Project Name</label>
                         <input class="form-control" placeholder="Project Name" />
                     </div>
+
                     <div class="form-group">
                         <label class="form-label">Client Name</label>
-                        <div class="form-select" data-placeholder="Select client">
-                            <button type="button" class="form-select-trigger">
-                                <span class="form-select-text"></span>
-                            </button>
-                            <ul class="form-select-options">
-                                @foreach(var option in Model.Clients) {
-                                    <li class="form-select-option" data-value="@option.Value">@option.Text</li>
-                                }
-                            </ul>
-                        </div>
+                        <select class="form-control" asp-items="Model.Clients">
+                            <option value="" disabled selected>Select client</option>
+                        </select>
                     </div>
+
                     <div class="form-group">
                         <label class="form-label">Description</label>
                         @* <textarea class="form-control" placeholder="Type something" /> *@
