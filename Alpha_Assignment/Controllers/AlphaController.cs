@@ -1,5 +1,6 @@
 ﻿using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Presentation.Models;
 
 namespace Presentation.Controllers;
@@ -10,7 +11,16 @@ public class AlphaController : Controller
     {
         var viewModel = new ProjectsViewModel()
         {
-            Projects = SetProjects()
+            Projects = SetProjects(),
+            AddProjectFormData = new AddProjectViewModel()
+            {
+                Clients = SetClients(),
+            },
+            EditProjectFormData = new EditProjectViewModel()
+            {
+                Clients = SetClients(),
+                Statuses = SetStatuses(),
+            }
         };
         return View(viewModel);
     }
@@ -37,5 +47,38 @@ public class AlphaController : Controller
         });
 
         return projects;
+    }
+
+    private IEnumerable<SelectListItem> SetClients()
+    {
+        var clients = new List<SelectListItem>();
+        clients.Add(new SelectListItem
+        {
+            Value = Guid.NewGuid().ToString(),
+            Text = "Github corp."
+        });
+        clients.Add(new SelectListItem
+        {
+            Value = Guid.NewGuid().ToString(),
+            Text = "Gitlab inc."
+        });
+        return clients;
+    }
+
+    private IEnumerable<SelectListItem> SetStatuses()
+    {
+        var statuses = new List<SelectListItem>();
+        statuses.Add(new SelectListItem
+        {
+            Value = Guid.NewGuid().ToString(),
+            Text = "STARTED",
+            Selected = true,
+        });
+        statuses.Add(new SelectListItem
+        {
+            Value = Guid.NewGuid().ToString(),
+            Text = "COMPLETED"
+        });
+        return statuses;
     }
 }

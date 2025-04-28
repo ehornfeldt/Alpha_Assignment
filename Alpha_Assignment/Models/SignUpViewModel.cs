@@ -16,18 +16,19 @@ namespace Presentation.Models
 
         [Required]
         [Display(Name = "Email", Prompt = "Enter email address")]
-        [RegularExpression(@"")]
+        [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Invalid email format.")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; } = null!;
 
         [Required]
         [Display(Name = "Password", Prompt = "Enter password")]
-        [RegularExpression(@"")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
+            ErrorMessage = "Password must be at least 8 characters long, with at least one uppercase letter, one lowercase letter, one number and one special character.")]
         [DataType(DataType.Password)]
         public string Password { get; set; } = null!;
 
         [Required]
-        [Display(Name = "Confirm Passoword", Prompt = "Confirm password")]
+        [Display(Name = "Confirm Password", Prompt = "Confirm password")]
         [Compare(nameof(Password), ErrorMessage = "The password and confirmation password do not match.")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; } = null!;

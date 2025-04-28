@@ -5,15 +5,16 @@ namespace Presentation.Models;
 public class SignInViewModel
 {
     [Required]
-    [Display(Name = "Password", Prompt = "Enter password")]
-    [RegularExpression(@"")]
-    [DataType(DataType.Password)]
-    public string Password { get; set; } = null!;
+    [Display(Name = "Email", Prompt = "Enter email address")]
+    [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Invalid email format.")]
+    [DataType(DataType.EmailAddress)]
+    public string Email { get; set; } = null!;
 
     [Required]
-    [Display(Name = "Confirm Passoword", Prompt = "Confirm password")]
-    [Compare(nameof(Password), ErrorMessage = "The password and confirmation password do not match.")]
+    [Display(Name = "Password", Prompt = "Enter password")]
+    [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
+            ErrorMessage = "Password must be at least 8 characters long, with at least one uppercase letter, one lowercase letter, one number and one special character.")]
     [DataType(DataType.Password)]
-
-    public bool IsPersistant { get; set; }
+    public string Password { get; set; } = null!;
+    public bool RememberMe { get; set; }
 }
