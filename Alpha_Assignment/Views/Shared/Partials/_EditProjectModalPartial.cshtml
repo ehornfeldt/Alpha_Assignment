@@ -1,6 +1,6 @@
 ﻿@model EditProjectViewModel
 
-<div class="modal fade" id="editProjectModal-@Model.Id" tabindex="-1" aria-labelledby="#editProjectModal-@Model.Id" aria-hidden="true">
+<div class="modal fade" id="editProjectModal-@Model.Id" data-project-id="@Model.Id" tabindex="-1" aria-labelledby="#editProjectModal-@Model.Id" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
@@ -26,12 +26,11 @@
 
                     <div class="form-group">
                         <label class="form-label">Description</label>
-                        @* <textarea class="form-control" placeholder="Type something" /> *@
                         <div class="wysiwyg">
-                            <textarea id="edit-project-description" asp-for="Description" class="hide-text-area">@Html.Raw(Model.Description ?? "")</textarea>
-                            <div id="edit-project-description-wysiwyg-editor" class="wysiwyg-editor form-control"></div>
-							<div id="edit-project-description-wysiwyg-toolbar" class="wysiwyg-toolbar form-control">
-                                <span class="ql-formats">
+                                <textarea id="edit-project-description-@Model.Id" asp-for="Description" class="hide-text-area">@Html.Raw(Model.Description ?? "")</textarea>
+                                <div id="edit-project-description-wysiwyg-editor-@Model.Id" class="wysiwyg-editor form-control"></div>
+                                <div id="edit-project-description-wysiwyg-toolbar-@Model.Id" class="wysiwyg-toolbar form-control">
+                                    <span class="ql-formats">
                                     <button class="ql-bold"></button>
                                     <button class="ql-italic"></button>
                                     <button class="ql-underline"></button>

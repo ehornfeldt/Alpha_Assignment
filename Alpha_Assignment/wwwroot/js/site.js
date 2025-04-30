@@ -1,10 +1,10 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
     initWyswyg('#add-project-description-wysiwyg-editor', '#add-project-description-wysiwyg-toolbar', '#add-project-description');
-    initWyswyg('#edit-project-description-wysiwyg-editor', '#edit-project-description-wysiwyg-toolbar', '#edit-project-description');
+    getEditModals();
 })
 
 //Quill.js
-function initWyswyg(wysiwygEditorId, wysiwygToolbarId, textareaId) { //,content
+function initWyswyg(wysiwygEditorId, wysiwygToolbarId, textareaId) {
     console.log('Initializing WYSIWYG editor...');
     const textarea = document.querySelector(textareaId);
     const content = textarea.value;
@@ -23,6 +23,27 @@ function initWyswyg(wysiwygEditorId, wysiwygToolbarId, textareaId) { //,content
 
     quill.on('text-change', function () {
         textarea.value = quill.root.innerHTML;
+    });
+}
+
+function getEditModals() {
+    //fick här hjälp av chatGPT
+    const editModals = document.querySelectorAll('[id^="editProjectModal"]');
+
+    editModals.forEach(modal => {
+        modal.addEventListener('shown.bs.modal', function () {
+            const id = modal.dataset.projectId;
+
+            if (!modal.dataset.quillInitialized) {
+                const editorId = `#edit-project-description-wysiwyg-editor-${id}`;
+                const toolbarId = `#edit-project-description-wysiwyg-toolbar-${id}`;
+                const textareaId = `#edit-project-description-${id}`;
+                const content = document.querySelector(textareaId)?.value;
+
+                initWyswyg(editorId, toolbarId, textareaId, content);
+                modal.dataset.quillInitialized = true;
+            }
+        });
     });
 }
 
