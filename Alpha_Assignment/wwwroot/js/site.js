@@ -1,4 +1,35 @@
-﻿document.querySelectorAll('.form-select').forEach(select => {
+﻿document.addEventListener('DOMContentLoaded', function () {
+    initWyswyg('#add-project-description-wysiwyg-editor', '#add-project-description-wysiwyg-toolbar', '#add-project-description');
+    initWyswyg('#edit-project-description-wysiwyg-editor', '#edit-project-description-wysiwyg-toolbar', '#edit-project-description');
+})
+
+//Quill.js
+function initWyswyg(wysiwygEditorId, wysiwygToolbarId, textareaId) { //,content
+    console.log('Initializing WYSIWYG editor...');
+    const textarea = document.querySelector(textareaId);
+    const content = textarea.value;
+
+    const quill = new Quill(wysiwygEditorId, {
+        modules: {
+            toolbar: wysiwygToolbarId
+        },
+        theme: 'snow',
+        placeholder: "Type something"
+    });
+
+    if (content) {
+        quill.root.innerHTML = content;
+    }
+
+    quill.on('text-change', function () {
+        textarea.value = quill.root.innerHTML;
+    });
+}
+
+
+//behövs nedan???
+
+document.querySelectorAll('.form-select').forEach(select => {
     const trigger = select.querySelector('.form-select-trigger');
     const triggrerText = select.querySelector('.form-select-text');
     const options = select.querySelectorAll('.form-select-option');

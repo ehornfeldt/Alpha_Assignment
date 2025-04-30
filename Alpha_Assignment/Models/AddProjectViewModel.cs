@@ -5,4 +5,5 @@ namespace Presentation.Models;
 public class AddProjectViewModel
 {
     public IEnumerable<SelectListItem> Clients { get; set; } = [];
+    public string Description { get; set; } = null!;
 }

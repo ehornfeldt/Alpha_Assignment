@@ -70,6 +70,7 @@ p {
     background-color: var(--accent);
 }
 
+
 /* Login / Create account view */
 .portal {
     background-color: var(--portal-bg);
@@ -371,6 +372,7 @@ p {
 }
 
 /* Modal */
+
 .modal .modal-header {
     border-bottom: none;
 }
@@ -430,3 +432,44 @@ width: 100%;
     transform: translateY(-50%);
     color: var(--color-grey-500);
 }
+
+/* QuillJS */
+/*.form-group {
+    position: relative;
+}*/
+.wysiwyg-editor {
+    min-height: 150px;
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    /*    position: relative;*/
+}
+
+.wysiwyg-toolbar {
+    border-top-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+}
+/*.toolbar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}*/
+.hide-text-area {
+    display: none;
+}
+
+.ql-snow.ql-toolbar button {
+    height: 20px;
+    width: 20px;
+}
+
+.ql-editor {
+    padding: 0;
+}
+
+    .ql-editor p, .ql-editor.ql-blank::before {
+        font-size: 0.7rem;
+        font-weight: 400;
+        font-family: "Nunito", sans-serif;
+        color: var(--body-light);
+        font-style: normal;
+    }

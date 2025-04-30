@@ -49,7 +49,9 @@
         <div class="main-area">
             <div class="header-content">
                 <h2>Projects</h2>
-                <button type="button" class="btn btn-primary add-project-btn" data-bs-toggle="modal" data-bs-target="#addProjectModal">
+                @* <button class="btn btn-primary add-project-btn" type="button" id="openModalBtn"> *@
+					<button type="button" class="btn btn-primary add-project-btn" data-bs-toggle="modal" data-bs-target="#addProjectModal">
+                    @*id="openAddProjectModalBtn"  data-type="modal" data-target="#addProjectModal"> *@
                     <img src="~/assets/plus.svg" alt="plus icon" />
                     Add Project
                 </button>
@@ -81,8 +83,9 @@
             </div>
         </div>
     </div>
+    @await Html.PartialAsync("Partials/_AddProjectModalPartial", Model.AddProjectFormData)
+    @* @await Html.PartialAsync("Partials/_testModalPartial", Model.AddProjectFormData) *@
+
 </div>
 
-@await Html.PartialAsync("Partials/_AddProjectModalPartial", Model.AddProjectFormData)
-@* @await Html.PartialAsync("Partials/_EditProjectModalPartial", Model.EditProjectFormData) *@
 

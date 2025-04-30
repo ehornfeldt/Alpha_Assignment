@@ -1,0 +1,75 @@
+﻿@model AddProjectViewModel
+
+<div id="customModal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-btn" id="closeModalBtn">&times;</span>
+        <h2>Add Project</h2>
+        <div class="modal-body">
+            <div class="modal-img">
+                <img src="assets/modal-image.svg" alt="modal image" />
+            </div>
+            <div class="modal-form">
+                <div class="form-group">
+                    <label class="form-label">Project Name</label>
+                    <input class="form-control" placeholder="Project Name" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Client Name</label>
+                    <select class="form-control" asp-items="Model.Clients">
+                        <option value="" disabled selected>Select client</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Description" class="form-label"></label>
+                    @* <div id="add-project-description-wysiwyg-toolbar" class="wysiwyg-toolbar"> *@
+                    @*     <span class="ql-formats"> *@
+                    @*         <button class="ql-bold"></button> *@
+                    @*         <button class="ql-italic"></button> *@
+                    @*         <button class="ql-underline"></button> *@
+                    @*     </span> *@
+                    @*     <span class="ql-formats"> *@
+                    @*         <button class="ql-align" value=""></button> *@
+                    @*         <button class="ql-align" value="center"></button> *@
+                    @*         <button class="ql-align" value="right"></button> *@
+                    @*     </span> *@
+                    @*     <span class="ql-formats"> *@
+                    @*         <button class="ql-list" value="bullet"></button> *@
+                    @*         <button class="ql-list" value="ordered"></button> *@
+                    @*     </span> *@
+                    @*     <span class="ql-formats"> *@
+                    @*         <button class="ql-link"></button> *@
+                    @*     </span> *@
+                    @* </div> *@
+                    @* <div id="add-project-description-wysiwyg-editor" class="wysiwyg-editor"></div> *@
+                    <textarea asp-for="Description" id="add-project-description"></textarea> @*class="hide-text-area"*@
+
+                </div>
+
+
+                <div class="date-pickers">
+                    <div class="form-group">
+                        <label class="form-label" for="startDate">Start Date</label>
+                        <input id="startDate" class="form-control" type="date" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="startDate">End Date</label>
+                        <input id="startDate" class="form-control" type="date" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="startDate">Budget</label>
+                    <div class="budget">
+                        <img class="dollar-icon" src="assets/dollar-icon.svg" alt="dollar icon" />
+                        <input type="text" class="form-control budget-form" aria-label="Amount (to the nearest dollar)" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Create</button>
+        </div>
+    </div>
+</div>

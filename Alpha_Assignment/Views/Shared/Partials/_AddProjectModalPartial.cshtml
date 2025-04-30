@@ -5,7 +5,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title fs-5" id="exampleModalLabel">Add Project</h3>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> @*data-type="close" data-target="addProjectModal"*@ 
             </div>
             <div class="modal-body">
                 <div class="modal-img">
@@ -25,39 +25,31 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Description</label>
-                        @* <textarea class="form-control" placeholder="Type something" /> *@
-                        <div class="wysiwyg">
-                            <textarea id="add-project-description"></textarea>
-                            <div id="add-project-description-wysiwyg-editor" class="wysiwyg-editor"></div>
-                            <div id="add-project-description-wysiwyg-toolbar" clasclasssName="wysiwyg-toolbar">
-                                <span class="ql-formats">
-                                    <button class="ql-bold"></button>
-                                    <button class="ql-italic"></button>
-                                    <button class="ql-underline"></button>
-                                </span>
-                                <span class="ql-formats">
-                                    <button class="ql-bold"></button>
-                                    <button class="ql-italic"></button>
-                                    <button class="ql-underline"></button>
-                                </span>
-                                <span class="ql-formats">
-                                    <button class="ql-align" value=""></button>
-                                    <button class="ql-align" value="center"></button>
-                                    <button class="ql-align" value="right"></button>
-                                </span>
-                                <span class="ql-formats">
-                                    <button class="ql-list" value="bullet"></button>
-                                    <button class="ql-list" value="ordered"></button>
-                                </span>
-                                <span class="ql-formats">
-                                    <button class="ql-link"></button>
-                                </span>
-                            </div>
+                        <label asp-for="Description" class="form-label"></label>
+                        <textarea asp-for="Description" id="add-project-description" class="hide-text-area"></textarea>
+						<div id="add-project-description-wysiwyg-editor" class="wysiwyg-editor form-control"></div>
+						<div id="add-project-description-wysiwyg-toolbar" class="wysiwyg-toolbar form-control">
+                            </">
+                            <span class="ql-formats">
+                                <button class="ql-bold"></button>
+                                <button class="ql-italic"></button>
+                                <button class="ql-underline"></button>
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-align" value=""></button>
+                                <button class="ql-align" value="center"></button>
+                                <button class="ql-align" value="right"></button>
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-list" value="bullet"></button>
+                                <button class="ql-list" value="ordered"></button>
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-link"></button>
+                            </span>
                         </div>
-
-
                     </div>
+
                     <div class="date-pickers">
                         <div class="form-group">
                             <label class="form-label" for="startDate">Start Date</label>
@@ -84,6 +76,3 @@
         </div>
     </div>
 </div>
-  )
-}
-
