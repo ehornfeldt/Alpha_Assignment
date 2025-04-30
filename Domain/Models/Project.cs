@@ -11,6 +11,6 @@ public class Project
     public decimal? Budget { get; set; }
 
     public Client Client = null!;
-    public User User = null!;
+    //public User User = null!;
     public Status Status = null!;
 }

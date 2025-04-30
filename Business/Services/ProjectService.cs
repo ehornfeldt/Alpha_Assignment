@@ -43,7 +43,7 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
             (orderByDescending: true,
                 sortBy: s => s.CreatedAt,
                 where: null,
-                include => include.User,
+                //include => include.User,
                 include => include.Status,
                 include => include.Client
             );
@@ -56,7 +56,7 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
     {
         var response = await _projectRepository.GetAsync
             (where: x => x.Id == id,
-                include => include.User,
+                //include => include.User,
                 include => include.Status,
                 include => include.Client
             );

@@ -37,6 +37,7 @@ public class ProjectsController(IProjectService projectService) : Controller
 
 
         var addProjectFormData = model.MapTo<AddProjectFormData>();
+        addProjectFormData.StatusId = 1; 
         var result = await _projectService.CreateProjectsAsync(addProjectFormData);
         if (result.Succeeded)
         {
