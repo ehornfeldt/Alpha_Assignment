@@ -1,7 +1,18 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
+    showModal();
     initWyswyg('#add-project-description-wysiwyg-editor', '#add-project-description-wysiwyg-toolbar', '#add-project-description');
     getEditModals();
 })
+
+function showModal () {
+    var showModal = '@ViewData["ShowAddModal"]' === 'True';
+
+    if (showModal) {
+        const modalElement = document.getElementById('addProjectModal');
+        const modal = new bootstrap.Modal(modalElement);
+        modal.show();
+    }
+}
 
 //Quill.js
 function initWyswyg(wysiwygEditorId, wysiwygToolbarId, textareaId) {

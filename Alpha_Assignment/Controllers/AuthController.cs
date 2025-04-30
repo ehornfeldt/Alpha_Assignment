@@ -6,32 +6,60 @@ using Presentation.Models;
 
 namespace Presentation.Controllers;
 
-public class AuthController : Controller
+public class AuthController(IAuthService authService) : Controller
 {
+
+    private readonly IAuthService _authService = authService;
+
     [Route("auth/signup")]
     public IActionResult SignUp()
     {
-        return View("SignUpView");
+        var model = new SignUpViewModel();
+        return View("SignUpView", model);
     }
+
+    //[Route("auth/signup")]
+    //[HttpPost]
+    //public IActionResult SignUp(SignUpViewModel model)
+    //{
+    //    if(!ModelState.IsValid)
+    //    {
+    //        return View("SignUpView", model);
+    //    }
+    //    return View("SignUpView");
+    //}
 
     [Route("auth/signup")]
     [HttpPost]
-    public IActionResult SignUp(SignUpViewModel model)
+    public async Task<IActionResult> SignUp(SignUpViewModel model)
     {
-        if(!ModelState.IsValid)
+        ViewBag.Error = null;
+        if (!ModelState.IsValid)
         {
+            Console.WriteLine("ModelState is not valid");
             return View("SignUpView", model);
         }
-        return View("SignUpView");
+
+        var signUpFormData = model.MapTo<SignUpFormData>();
+        var result = await _authService.SignUpAsync(signUpFormData);
+
+        if (result.Succeeded)
+        {
+            Console.WriteLine("SignUp succeeded");
+            return RedirectToAction("SignIn", "Auth");
+        }
+
+        ViewBag.Error = result.Error;
+        return View("SignUpView", model);
     }
 
-    [Route("auth/login")]
     public IActionResult SignIn()
     {
-        return View("SignInView");
+        var model = new SignInViewModel();
+        return View("SignInView", model);
     }
 
-    [Route("auth/login")]
+    //[Route("auth/login")]
     [HttpPost]
     public IActionResult SignIn(SignInViewModel model)
     {
