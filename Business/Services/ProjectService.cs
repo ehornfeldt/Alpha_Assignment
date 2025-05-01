@@ -39,7 +39,7 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
 
     public async Task<ProjectResult<IEnumerable<Project>>> GetProjectsAsync()
     {
-        var response = await _projectRepository.GetAllAsync
+        var response = await _projectRepository.GetAllProjectsAsync
             (orderByDescending: true,
                 sortBy: s => s.CreatedAt,
                 where: null,

@@ -1,8 +1,10 @@
 ﻿using Business.Services;
+using Data.Entities;
 using Domain.Extensions;
 using Domain.Models;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.SqlServer.Server;
 using Presentation.Models;
 
 namespace Presentation.Controllers;
@@ -37,7 +39,8 @@ public class ProjectsController(IProjectService projectService) : Controller
 
 
         var addProjectFormData = model.MapTo<AddProjectFormData>();
-        addProjectFormData.StatusId = 1; 
+        addProjectFormData.StatusId = 1;
+        addProjectFormData.Image = "/assets/card-icon.svg";
         var result = await _projectService.CreateProjectsAsync(addProjectFormData);
         if (result.Succeeded)
         {

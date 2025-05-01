@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 
 namespace Domain.Extensions;
-
 public static class MappExtensions
 {
     public static TDestination MapTo<TDestination>(this object source)

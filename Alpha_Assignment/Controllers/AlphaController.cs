@@ -1,17 +1,21 @@
-﻿using Domain.Models;
+﻿using Business.Services;
+using Domain.Extensions;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Presentation.Models;
 
 namespace Presentation.Controllers;
-public class AlphaController : Controller
+public class AlphaController(IProjectService projectService) : Controller
 {
+    private readonly IProjectService _projectService = projectService;
+
     [Route("projects")]
-    public IActionResult AlphaView()
+    public async Task<IActionResult> AlphaView()
     {
         var viewModel = new ProjectsViewModel()
         {
-            Projects = SetProjects(),
+            Projects = await GetAllProjects(),
             AddProjectFormData = new AddProjectViewModel()
             {
                 Clients = SetClients(),
@@ -25,36 +29,32 @@ public class AlphaController : Controller
         return View(viewModel);
     }
 
-    private IEnumerable<ProjectViewModel> SetProjects()
+    private async Task<IEnumerable<ProjectViewModel>> GetAllProjects()
     {
-        var projects = new List<ProjectViewModel>();
-        projects.Add(new ProjectViewModel
+        
+        var result = await _projectService.GetProjectsAsync();
+        if (!result.Succeeded && result.Result == null)
         {
-            Id = Guid.NewGuid().ToString(),
-            Image = "/assets/card-icon.svg",
-            ProjectName = "Project 1",
-            Description = "Description for project 1",
-            ClientName = "Github corp.",
-            ClientId = "1",
-            Clients = SetClients(),
-            StartDate = DateTime.Now,
-            Budget = 1000,
-        });
+            return Enumerable.Empty<ProjectViewModel>();
+        }
+        if (result.Result != null)
+        {   
+            var projects = result.Result!.Select(p => new ProjectViewModel
+            {
+                ProjectName = p.ProjectName,
+                Description = p.Description!,
+                StartDate = p.StartDate,
+                EndDate = p.EndDate,
+                Budget = p.Budget,
+                ClientId = p.Client.Id,
+                ClientName = p.Client.ClientName!,
+                Image = p.Image!,
+                StatusId = p.Status.Id,
+            });
+            return projects;
+        }
 
-        projects.Add(new ProjectViewModel
-        {
-            Id = Guid.NewGuid().ToString(),
-            Image = "/assets/card-icon.svg",
-            ProjectName = "Project 2",
-            Description = "Description for project 2",
-            ClientName = "Gitlab inc.",
-            ClientId = "2",
-            Clients = SetClients(),
-            StartDate = DateTime.Now,
-            Budget = 2000,
-        });
-
-        return projects;
+        return Enumerable.Empty<ProjectViewModel>();
     }
 
     private IEnumerable<SelectListItem> SetClients()

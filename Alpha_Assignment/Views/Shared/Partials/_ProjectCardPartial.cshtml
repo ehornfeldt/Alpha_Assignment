@@ -1,7 +1,7 @@
 ﻿@model ProjectViewModel
 <div class="project-card">
     <div class="card-header">
-        <img src=@Model.Image alt="project logo" />
+        <img src="@Model.Image" alt="project logo" />
         <div class="project-name">
             <h6>@Model.ProjectName</h6>
             <p>@Model.ClientName</p>
@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="card-content">
-        <p>@Model.Description</p>
+        <p>@Html.Raw(Model.Description)</p>
     </div>
 </div>
 
