@@ -15,14 +15,14 @@ public class ProjectsController(IProjectService projectService) : Controller
 
     //public async Task<IActionResult> Index()
     //[Route("projects")]
-    public IActionResult Index()
-    {
-        var viewModel = new ProjectsViewModel();
-        //{
-        //    Projects = await _projectService.GetProjectsAsync(),
-        //};
-        return View(viewModel);
-    }
+    //public IActionResult Index()
+    //{
+    //    var viewModel = new ProjectsViewModel();
+    //    //{
+    //    //    Projects = await _projectService.GetProjectsAsync(),
+    //    //};
+    //    return View(viewModel);
+    //}
 
     [HttpPost]
     public async Task<IActionResult> AddProject(AddProjectViewModel model)

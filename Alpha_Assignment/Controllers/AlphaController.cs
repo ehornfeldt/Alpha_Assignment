@@ -1,14 +1,14 @@
 ﻿using Business.Services;
-using Domain.Extensions;
-using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Presentation.Models;
 
 namespace Presentation.Controllers;
-public class AlphaController(IProjectService projectService) : Controller
+public class AlphaController(IProjectService projectService, IClientService clientService, IStatusService statusService) : Controller
 {
     private readonly IProjectService _projectService = projectService;
+    private readonly IClientService _clientService = clientService;
+    private readonly IStatusService _statusService = statusService;
 
     [Route("projects")]
     public async Task<IActionResult> AlphaView()
@@ -18,12 +18,12 @@ public class AlphaController(IProjectService projectService) : Controller
             Projects = await GetAllProjects(),
             AddProjectFormData = new AddProjectViewModel()
             {
-                Clients = SetClients(),
+                Clients = await GetAllClients(),
             },
             EditProjectFormData = new EditProjectViewModel()
             {
-                Clients = SetClients(),
-                Statuses = SetStatuses(),
+                Clients = await GetAllClients(),
+                Statuses = await GetAllStatuses(),
             }
         };
         return View(viewModel);
@@ -31,14 +31,16 @@ public class AlphaController(IProjectService projectService) : Controller
 
     private async Task<IEnumerable<ProjectViewModel>> GetAllProjects()
     {
-        
+
         var result = await _projectService.GetProjectsAsync();
+        var clients = await GetAllClients();
+        var statuses = await GetAllStatuses();
         if (!result.Succeeded && result.Result == null)
         {
             return Enumerable.Empty<ProjectViewModel>();
         }
         if (result.Result != null)
-        {   
+        {
             var projects = result.Result!.Select(p => new ProjectViewModel
             {
                 ProjectName = p.ProjectName,
@@ -50,6 +52,8 @@ public class AlphaController(IProjectService projectService) : Controller
                 ClientName = p.Client.ClientName!,
                 Image = p.Image!,
                 StatusId = p.Status.Id,
+                Clients = clients,
+                Statuses = statuses,
             });
             return projects;
         }
@@ -57,36 +61,53 @@ public class AlphaController(IProjectService projectService) : Controller
         return Enumerable.Empty<ProjectViewModel>();
     }
 
-    private IEnumerable<SelectListItem> SetClients()
+    private async Task<IEnumerable<SelectListItem>> GetAllClients()
     {
         var clients = new List<SelectListItem>();
-        clients.Add(new SelectListItem
+        var result = await _clientService.GetClientsAsync();
+        if (!result.Succeeded && result.Result == null)
         {
-            Value = "1",
-            Text = "Github corp."
-        });
-        clients.Add(new SelectListItem
+            return new List<SelectListItem>();
+        }
+        if (result.Result != null)
         {
-            Value = "2",
-            Text = "Gitlab inc."
-        });
-        return clients;
+
+            foreach (var client in result.Result)
+            {
+                clients.Add(new SelectListItem
+                {
+                    Value = client.Id.ToString(),
+                    Text = client.ClientName!,
+                });
+            }
+            return clients;
+        }
+
+        return new List<SelectListItem>();
     }
 
-    private IEnumerable<SelectListItem> SetStatuses()
+    private async Task<IEnumerable<SelectListItem>> GetAllStatuses()
     {
         var statuses = new List<SelectListItem>();
-        statuses.Add(new SelectListItem
+        var result = await _statusService.GetStatusesAsync();
+        if (!result.Succeeded && result.Result == null)
         {
-            Value = Guid.NewGuid().ToString(),
-            Text = "STARTED",
-            Selected = true,
-        });
-        statuses.Add(new SelectListItem
+            return new List<SelectListItem>();
+        }
+        if (result.Result != null)
         {
-            Value = Guid.NewGuid().ToString(),
-            Text = "COMPLETED"
-        });
-        return statuses;
+
+            foreach (var status in result.Result)
+            {
+                statuses.Add(new SelectListItem
+                {
+                    Value = status.Id.ToString(),
+                    Text = status.StatusName!,
+                });
+            }
+            return statuses;
+        }
+
+        return new List<SelectListItem>();
     }
 }

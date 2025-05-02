@@ -1,7 +1,5 @@
-﻿using Azure;
-using Business.Models;
+﻿using Business.Models;
 using Data.Repositories;
-using Domain.Extensions;
 using Domain.Models;
 
 namespace Business.Services;

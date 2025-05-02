@@ -21,7 +21,7 @@
 
                         <div class="form-group">
                             <label class="form-label" asp-for="ClientId"></label>
-                            <select class="form-control" asp-items="Model.Clients">
+                            <select class="form-control" asp-for="ClientId" asp-items="Model.Clients">
                                 <option value="" disabled selected>Select client</option>
                             </select>
                             <span asp-validation-for="ClientId" class="text-danger"></span>
@@ -70,6 +70,14 @@
                                 <img class="dollar-icon" src="assets/dollar-icon.svg" alt="dollar icon" />
                                 <input type="text" class="form-control budget-form" asp-for="Budget" aria-label="Amount (to the nearest dollar)" />
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" asp-for="StatusId"></label>
+                            <select class="form-control" asp-for="StatusId" asp-items="Model.Statuses">
+                                <option value="" disabled selected>Select status</option>
+                            </select>
+                            <span asp-validation-for="StatusId" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="modal-footer">

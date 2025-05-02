@@ -1,7 +1,6 @@
 ﻿using Data.Contexts;
 using Data.Models;
 using Domain.Extensions;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Linq.Expressions;
@@ -67,7 +66,7 @@ public abstract class BaseRepository<TEntity, TModel> : IBaseRepository<TEntity,
         {
             query = orderByDescending ? query.OrderByDescending(sortBy) : query.OrderBy(sortBy);
         }
-
+        
         var entities = await query.ToListAsync();
         var result = entities.Select(entity => entity!.MapTo<TModel>());
         return new RepositoryResult<IEnumerable<TModel>> { Succeeded = true, StatusCode = 200, Result = result };
