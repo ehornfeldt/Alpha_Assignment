@@ -13,17 +13,6 @@ public class ProjectsController(IProjectService projectService) : Controller
 {
     private readonly IProjectService _projectService = projectService;
 
-    //public async Task<IActionResult> Index()
-    //[Route("projects")]
-    //public IActionResult Index()
-    //{
-    //    var viewModel = new ProjectsViewModel();
-    //    //{
-    //    //    Projects = await _projectService.GetProjectsAsync(),
-    //    //};
-    //    return View(viewModel);
-    //}
-
     [HttpPost]
     public async Task<IActionResult> AddProject(AddProjectViewModel model)
     {
@@ -50,12 +39,26 @@ public class ProjectsController(IProjectService projectService) : Controller
 
         return RedirectToAction("AlphaView", "Alpha");
 
-        //return Json(new { });
     }
 
-    [HttpPut]
-    public IActionResult EditProject(EditProjectViewModel model)
+    [HttpPost]
+    public async Task<IActionResult> EditProject(EditProjectViewModel model, string id)
     {
+        if (!ModelState.IsValid)
+        {
+            return RedirectToAction("AlphaView", "Alpha");
+        }
+
+        var editProjectFormData = model.MapTo<EditProjectFormData>();
+        editProjectFormData.Image = "/assets/card-icon.svg";
+
+        var result = await _projectService.EditProjectAsync(model.Id, editProjectFormData);
+        if (result.Succeeded)
+        {
+            Console.WriteLine("Project updated successfully");
+            return RedirectToAction("AlphaView", "Alpha");
+        }
+
         return RedirectToAction("AlphaView", "Alpha");
     }
 

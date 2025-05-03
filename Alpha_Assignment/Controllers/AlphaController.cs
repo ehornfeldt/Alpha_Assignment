@@ -43,6 +43,7 @@ public class AlphaController(IProjectService projectService, IClientService clie
         {
             var projects = result.Result!.Select(p => new ProjectViewModel
             {
+                Id = p.Id,
                 ProjectName = p.ProjectName,
                 Description = p.Description!,
                 StartDate = p.StartDate,

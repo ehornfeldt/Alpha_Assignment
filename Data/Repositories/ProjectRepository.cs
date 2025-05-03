@@ -42,6 +42,7 @@ public class ProjectRepository(AppDbContext context) : BaseRepository<ProjectEnt
         {
             projects.Add(new Project
             {
+                Id = entity.Id,
                 ProjectName = entity.ProjectName,
                 Description = entity.Description,
                 StartDate = entity.StartDate,

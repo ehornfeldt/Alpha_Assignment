@@ -9,10 +9,12 @@
             </div>
             <div class="modal-body">
                 <form method="post" asp-controller="Projects" asp-action="EditProject" novalidate>
+                    <input type="hidden" asp-for="Id" />
                     <div class="modal-img">
                         <img src="assets/modal-image.svg" alt="modal image" />
                     </div>
                     <div class="modal-form">
+
                         <div class="form-group">
                             <label class="form-label" asp-for="ProjectName"></label>
                             <input class="form-control" asp-for="ProjectName" />

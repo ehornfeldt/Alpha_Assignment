@@ -11,12 +11,14 @@ public interface IProjectService
     Task<ProjectResult> CreateProjectsAsync(AddProjectFormData formData);
     Task<ProjectResult<Project>> GetProjectAsync(string id);
     Task<ProjectResult<IEnumerable<Project>>> GetProjectsAsync();
+    Task<ProjectResult<bool>> EditProjectAsync(string id, EditProjectFormData formData);
 }
 
-public class ProjectService(IProjectRepository projectRepository, IStatusService statusService) : IProjectService
+public class ProjectService(IProjectRepository projectRepository, IStatusService statusService, IClientService clientService) : IProjectService
 {
     private readonly IProjectRepository _projectRepository = projectRepository;
     private readonly IStatusService _statusService = statusService;
+    private readonly IClientService _clientService = clientService;
 
     public async Task<ProjectResult> CreateProjectsAsync(AddProjectFormData formData)
     {
@@ -67,22 +69,23 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
 
     }
 
-    //public async Task<ProjectResult<bool>> UpdateProjectAsync(string id, UpdateProjectFormData formData)
-    //{
-    //    if (formData == null)
-    //    {
-    //        return new ProjectResult<bool> { Succeeded = false, StatusCode = 400, Error = "Not all required field are supplied." };
-    //    }
-    //    var projectEntity = formData.MapTo<ProjectEntity>();
-    //    var statusResult = await _statusService.GetStatusByIdAsync(1);
-    //    var status = statusResult.Result;
-    //    projectEntity.StatusId = status!.Id;
-    //    projectEntity.Id = id;
-    //    var response = await _projectRepository.UpdateAsync(projectEntity);
-    //    return response.Succeeded
-    //        ? new ProjectResult<bool> { Succeeded = true, StatusCode = 200 }
-    //        : new ProjectResult<bool> { Succeeded = false, StatusCode = response.StatusCode, Error = response.Error };
-    //}
+    public async Task<ProjectResult<bool>> EditProjectAsync(string id, EditProjectFormData formData)
+    {
+        if (formData == null)
+        {
+            return new ProjectResult<bool> { Succeeded = false, StatusCode = 400, Error = "Not all required field are supplied." };
+        }
+        var projectEntity = formData.MapTo<ProjectEntity>();
+        var statusResult = await _statusService.GetStatusByIdAsync(1);
+        var clientResult = await _clientService.GetClientByIdAsync(formData.ClientId);
+        var status = statusResult.Result;
+        projectEntity.StatusId = status!.Id;
+        projectEntity.Id = id;
+        var response = await _projectRepository.UpdateAsync(projectEntity);
+        return response.Succeeded
+            ? new ProjectResult<bool> { Succeeded = true, StatusCode = 200 }
+            : new ProjectResult<bool> { Succeeded = false, StatusCode = response.StatusCode, Error = response.Error };
+    }
 
     //public async Task<ProjectResult<bool>> DeleteProjectAsync(string id)
     //{

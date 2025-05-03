@@ -5,7 +5,7 @@ namespace Presentation.Models;
 
 public class EditProjectViewModel
 {
-    public string Id { get; set; } = Guid.NewGuid().ToString();
+    public string Id { get; set; } = null!;
     public IEnumerable<SelectListItem> Clients { get; set; } = [];
     public IEnumerable<SelectListItem> Statuses { get; set; } = [];
 
