@@ -278,18 +278,19 @@ p {
     gap: 1.8rem;
     border-bottom: 1px solid var(--border-200);
 }
-.alpha .main-content .project-menu p {
+.alpha .main-content .project-menu a {
     font-size: 0.8rem;
     font-weight: 700;
     color: var(--body-light);
     margin: 0;
     padding-bottom: 0.5rem;
+    text-decoration: unset;
 }
 
-.alpha .main-content .project-menu p:active {
-    color: var(--accent);
-    border-bottom: 2px solid var(--accent);
-}
+    .alpha .main-content .project-menu a:active, .alpha .main-content .project-menu a.selected {
+        color: var(--accent);
+        border-bottom: 2px solid var(--accent);
+    }
 
 /*Projects*/
 

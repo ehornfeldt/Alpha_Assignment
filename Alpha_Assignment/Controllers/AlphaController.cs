@@ -1,5 +1,6 @@
 ﻿using Business.Services;
 using Data.Entities;
+using Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,12 +18,18 @@ public class AlphaController(IProjectService projectService, IClientService clie
     private readonly UserManager<UserEntity> _userManager = userManager;
 
     [Route("projects")]
-    public async Task<IActionResult> AlphaView()
+    public async Task<IActionResult> AlphaView(int? status)
     {
 
         var user = await _userManager.GetUserAsync(User);
         var fullName = $"{user!.FirstName} {user.LastName}";
         ViewBag.FullName = fullName;
+
+        //var allProjects = await GetAllProjects();
+
+        //var filteredProjects = string.IsNullOrEmpty(status.ToString())
+        //    ? allProjects
+        //    : allProjects.Where(p => p.StatusId == status);
 
         var viewModel = new ProjectsViewModel()
         {
@@ -122,4 +129,14 @@ public class AlphaController(IProjectService projectService, IClientService clie
 
         return new List<SelectListItem>();
     }
+
+    //public async Task<IEnumerable<ProjectViewModel>> FilterProjects(string? searchString)
+    //{
+    //    var projects = await GetAllProjects();
+    //    if (!string.IsNullOrEmpty(searchString))
+    //    {
+    //        projects = projects.Where(p => p.ProjectName!.Contains(searchString, StringComparison.OrdinalIgnoreCase));
+    //    }
+    //    return View("Alpha", projects);
+    //}
 }

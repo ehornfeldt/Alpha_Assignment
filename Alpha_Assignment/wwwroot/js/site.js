@@ -2,6 +2,7 @@
     showModal();
     initWyswyg('#add-project-description-wysiwyg-editor', '#add-project-description-wysiwyg-toolbar', '#add-project-description');
     getEditModals();
+    setupProjectFilterMenu();
 })
 
 function showModal () {
@@ -57,6 +58,47 @@ function getEditModals() {
         });
     });
 }
+//hjälp av chatgpt med denna
+function setupProjectFilterMenu() {
+    const buttons = document.querySelectorAll('.project-menu-item');
+    const projects = document.querySelectorAll('.project-card');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            buttons.forEach(b => b.classList.remove('selected'));
+            button.classList.add('selected');
+
+            const statusFilter = button.getAttribute('data-filter-status');
+
+            projects.forEach(project => {
+                const statusId = project.getAttribute('data-status-id');
+                const shouldShow = statusFilter === "" || statusFilter === statusId;
+                project.style.display = shouldShow ? "block" : "none";
+            });
+        });
+    });
+}
+
+function projectMenuSelect() {
+    document.querySelectorAll('.project-menu-item').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.project-menu-item').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+        });
+    });
+}
+
+//document.querySelectorAll('.project-menu-item').forEach(item => {
+//    item.addEventListener('click', function () {
+//        const selectedItem = document.querySelector('.project-menu-item.selected');
+//        if (selectedItem) {
+//            selectedItem.classList.remove('selected');
+//        }
+//        this.classList.add('selected');
+//    });
+//});
 
 
 //behövs nedan???

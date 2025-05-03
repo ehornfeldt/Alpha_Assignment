@@ -43,10 +43,6 @@
                                 Log Out
                             </button>
                         </form>
-                        @* <p class="dropdown-item" type="submit"> *@
-                        @*     <img src="~/assets/logout-icon.svg" alt="trash icon" /> *@
-                        @*     Log Out *@
-                        @* </p> *@
                     </li>
                 </ul>
             </div>
@@ -56,17 +52,15 @@
         <div class="main-area">
             <div class="header-content">
                 <h2>Projects</h2>
-                @* <button class="btn btn-primary add-project-btn" type="button" id="openModalBtn"> *@
 					<button type="button" class="btn btn-primary add-project-btn" data-bs-toggle="modal" data-bs-target="#addProjectModal">
-                    @*id="openAddProjectModalBtn"  data-type="modal" data-target="#addProjectModal"> *@
                     <img src="~/assets/plus.svg" alt="plus icon" />
                     Add Project
                 </button>
             </div>
             <div class="project-menu">
-                <p>ALL[8]</p>
-                <p>STARTED[8]</p>
-                <p>COMPLETED[0]</p>
+                <a class="project-menu-item selected" href="#" data-filter-status="">ALL [@Model.Projects.Count()]</a>
+                <a class="project-menu-item" href="#" data-filter-status="1">STARTED [@Model.Projects.Count(p => p.StatusId == 1)]</a>
+                <a class="project-menu-item" href="#" data-filter-status="2">COMPLETED [@Model.Projects.Count(p => p.StatusId == 2)]</a>
             </div>
             <div class="project-components">
 				@if (Model.Projects != null && Model.Projects.Any())
@@ -83,6 +77,7 @@
 	                        Description = project.Description,
 	                        StartDate = project.StartDate,
 	                        EndDate = project.EndDate,
+                            StatusId = project.StatusId,
 	                        Budget = project.Budget,
 	                        Statuses = project.Statuses,
                         })

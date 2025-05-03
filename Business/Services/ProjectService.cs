@@ -76,7 +76,7 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
             return new ProjectResult<bool> { Succeeded = false, StatusCode = 400, Error = "Not all required field are supplied." };
         }
         var projectEntity = formData.MapTo<ProjectEntity>();
-        var statusResult = await _statusService.GetStatusByIdAsync(1);
+        var statusResult = await _statusService.GetStatusByIdAsync(projectEntity.StatusId);
         var clientResult = await _clientService.GetClientByIdAsync(formData.ClientId);
         var status = statusResult.Result;
         projectEntity.StatusId = status!.Id;
