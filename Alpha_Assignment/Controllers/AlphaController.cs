@@ -1,5 +1,7 @@
 ﻿using Business.Services;
+using Data.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Presentation.Models;
@@ -7,15 +9,21 @@ using Presentation.Models;
 namespace Presentation.Controllers;
 
 [Authorize]
-public class AlphaController(IProjectService projectService, IClientService clientService, IStatusService statusService) : Controller
+public class AlphaController(IProjectService projectService, IClientService clientService, IStatusService statusService, UserManager<UserEntity> userManager) : Controller
 {
     private readonly IProjectService _projectService = projectService;
     private readonly IClientService _clientService = clientService;
     private readonly IStatusService _statusService = statusService;
+    private readonly UserManager<UserEntity> _userManager = userManager;
 
     [Route("projects")]
     public async Task<IActionResult> AlphaView()
     {
+
+        var user = await _userManager.GetUserAsync(User);
+        var fullName = $"{user!.FirstName} {user.LastName}";
+        ViewBag.FullName = fullName;
+
         var viewModel = new ProjectsViewModel()
         {
             Projects = await GetAllProjects(),

@@ -32,14 +32,21 @@
                     <li>
                         <p class="dropdown-item semibold" type="button">
                             <img src="~/assets/avatar-icon.svg" alt="edit pen icon" />
-                            Tommy Mattin-Lassein
+                            @ViewBag.FullName!
                         </p>
                     </li>
                     <li>
-                        <p class="dropdown-item" type="button">
-                            <img src="~/assets/logout-icon.svg" alt="trash icon" />
-                            Log Out
-                        </p>
+
+                        <form method="post" asp-controller="Auth" asp-action="SignOutUser">
+                            <button class="dropdown-item" type="submit">
+                                <img src="~/assets/logout-icon.svg" alt="logout icon" />
+                                Log Out
+                            </button>
+                        </form>
+                        @* <p class="dropdown-item" type="submit"> *@
+                        @*     <img src="~/assets/logout-icon.svg" alt="trash icon" /> *@
+                        @*     Log Out *@
+                        @* </p> *@
                     </li>
                 </ul>
             </div>
