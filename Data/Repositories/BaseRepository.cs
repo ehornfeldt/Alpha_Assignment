@@ -129,9 +129,9 @@ public abstract class BaseRepository<TEntity, TModel> : IBaseRepository<TEntity,
     public virtual async Task<RepositoryResult<bool>> ExistsAsync(Expression<Func<TEntity, bool>> findBy)
     {
         var exists = await _table.AnyAsync(findBy);
-        return !exists
-            ? new RepositoryResult<bool> { Succeeded = false, StatusCode = 404, Error = "Entity not found." }
-            : new RepositoryResult<bool> { Succeeded = true, StatusCode = 200 };
+        return exists
+            ? new RepositoryResult<bool> { Succeeded = true, StatusCode = 200 }
+            : new RepositoryResult<bool> { Succeeded = false, StatusCode = 404, Error = "Entity not found." };
     }
 
     public virtual async Task<RepositoryResult<bool>> UpdateAsync(TEntity entity) //public virtual async?? eller går det även med bara public async

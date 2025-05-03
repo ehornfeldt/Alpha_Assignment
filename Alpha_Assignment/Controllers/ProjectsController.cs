@@ -2,6 +2,7 @@
 using Data.Entities;
 using Domain.Extensions;
 using Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.SqlServer.Server;
@@ -9,6 +10,7 @@ using Presentation.Models;
 
 namespace Presentation.Controllers;
 
+[Authorize]
 public class ProjectsController(IProjectService projectService) : Controller
 {
     private readonly IProjectService _projectService = projectService;

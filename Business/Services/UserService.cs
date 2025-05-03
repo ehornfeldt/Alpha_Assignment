@@ -41,6 +41,7 @@ public class UserService(IUserRepository userRepository, UserManager<UserEntity>
         try
         {
             var userEntity = formData.MapTo<UserEntity>();
+            userEntity.UserName = formData.Email;
             var result = await _userManager.CreateAsync(userEntity, formData.Password);  //3.06.58 i filmen
 
             return result.Succeeded

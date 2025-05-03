@@ -61,13 +61,27 @@ public class AuthController(IAuthService authService) : Controller
 
     //[Route("auth/login")]
     [HttpPost]
-    public IActionResult SignIn(SignInViewModel model)
+    public async Task<ActionResult> SignIn(SignInViewModel model)
     {
+        ViewBag.Error = null;
+        if(string.IsNullOrEmpty(model.Email) || string.IsNullOrEmpty(model.Password))
+        {
+            ViewBag.Error = "Incorrect email or password.";
+            return View("SignInView", model);
+        }
         if (!ModelState.IsValid)
         {
             return View("SignInView", model);
         }
-        return View("SignInView");
+
+        var signInFormData = model.MapTo<SignInFormData>();
+        var result = await _authService.SignInAsync(signInFormData);
+
+        if (result.Succeeded)
+        {
+            return RedirectToAction("AlphaView", "Alpha");
+        }
+        return View("SignInView", model);
     }
 }
 
