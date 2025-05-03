@@ -20,7 +20,7 @@ public class EditProjectViewModel
 
     [Required]
     [Display(Name = "Status")]
-    public string StatusId { get; set; } = null!;
+    public int StatusId { get; set; }
 
     [Required]
     [Display(Name = "Description", Prompt = "Enter description")]

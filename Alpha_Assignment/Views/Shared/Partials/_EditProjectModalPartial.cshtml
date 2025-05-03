@@ -24,7 +24,7 @@
                         <div class="form-group">
                             <label class="form-label" asp-for="ClientId"></label>
                             <select class="form-control" asp-for="ClientId" asp-items="Model.Clients">
-                                <option value="" disabled selected>Select client</option>
+                                <option value="" disabled>Select client</option>
                             </select>
                             <span asp-validation-for="ClientId" class="text-danger"></span>
                         </div>
@@ -62,7 +62,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label" asp-for="EndDate"></label>
-                                <input id="startDate" class="form-control" asp-for="EndDate" />
+                                <input id="endDate" class="form-control" asp-for="EndDate" />
                             </div>
                         </div>
 
@@ -77,7 +77,7 @@
                         <div class="form-group">
                             <label class="form-label" asp-for="StatusId"></label>
                             <select class="form-control" asp-for="StatusId" asp-items="Model.Statuses">
-                                <option value="" disabled selected>Select status</option>
+                                <option value="" disabled>Select status</option>
                             </select>
                             <span asp-validation-for="StatusId" class="text-danger"></span>
                         </div>

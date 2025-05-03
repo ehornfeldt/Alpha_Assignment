@@ -309,6 +309,9 @@ p {
     flex-direction: column;
     gap: 1rem;
 }
+.project-components .project-card li{
+    font-size: 0.8rem;
+}
 
 .project-components .card-header {
     display: grid;
