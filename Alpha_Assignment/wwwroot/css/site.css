@@ -440,25 +440,18 @@ p {
 }
 
 /* QuillJS */
-/*.form-group {
-    position: relative;
-}*/
+
 .wysiwyg-editor {
     min-height: 150px;
     border-bottom-right-radius: 0 !important;
     border-bottom-left-radius: 0 !important;
-    /*    position: relative;*/
 }
 
 .wysiwyg-toolbar {
     border-top-right-radius: 0 !important;
     border-top-left-radius: 0 !important;
 }
-/*.toolbar {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}*/
+
 .hide-text-area {
     display: none;
 }

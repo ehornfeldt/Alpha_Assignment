@@ -3,9 +3,7 @@ using Data.Contexts;
 using Data.Entities;
 using Data.Repositories;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 

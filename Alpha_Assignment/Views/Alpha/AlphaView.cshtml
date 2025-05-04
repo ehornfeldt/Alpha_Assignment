@@ -32,7 +32,7 @@
                     <li>
                         <p class="dropdown-item semibold" type="button">
                             <img src="~/assets/avatar-icon.svg" alt="edit pen icon" />
-                            @ViewBag.FullName!
+                            @ViewBag.FullName
                         </p>
                     </li>
                     <li>
@@ -87,7 +87,6 @@
         </div>
     </div>
     @await Html.PartialAsync("Partials/_AddProjectModalPartial", Model.AddProjectFormData)
-    @* @await Html.PartialAsync("Partials/_testModalPartial", Model.AddProjectFormData) *@
 
 </div>
 

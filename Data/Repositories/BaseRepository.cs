@@ -29,7 +29,7 @@ public abstract class BaseRepository<TEntity, TModel> : IBaseRepository<TEntity,
         _table = context.Set<TEntity>();
     }
 
-    public virtual async Task<RepositoryResult<bool>> AddAsync(TEntity entity) //public virtual async?? eller går dte även med bara public async
+    public virtual async Task<RepositoryResult<bool>> AddAsync(TEntity entity)
     {
         if (entity == null)
         {
@@ -117,15 +117,6 @@ public abstract class BaseRepository<TEntity, TModel> : IBaseRepository<TEntity,
         return new RepositoryResult<TModel> { Succeeded = true, StatusCode = 200, Result = result };
     }
 
-
-    //public virtual async Task<RepositoryResult<TEntity>> GetAsync(Expression<Func<TEntity, bool>> findBy)
-    //{
-    //    var entity = await _table.FirstOrDefaultAsync(findBy);
-    //    return entity == null!
-    //        ? new RepositoryResult<TEntity> { Succeeded = false, StatusCode = 404, Error = "Entity not found." }
-    //        : new RepositoryResult<TEntity> { Succeeded = true, StatusCode = 200, Result = entity };
-    //}
-
     public virtual async Task<RepositoryResult<bool>> ExistsAsync(Expression<Func<TEntity, bool>> findBy)
     {
         var exists = await _table.AnyAsync(findBy);
@@ -134,7 +125,7 @@ public abstract class BaseRepository<TEntity, TModel> : IBaseRepository<TEntity,
             : new RepositoryResult<bool> { Succeeded = false, StatusCode = 404, Error = "Entity not found." };
     }
 
-    public virtual async Task<RepositoryResult<bool>> UpdateAsync(TEntity entity) //public virtual async?? eller går det även med bara public async
+    public virtual async Task<RepositoryResult<bool>> UpdateAsync(TEntity entity)
     {
         if (entity == null)
         {
@@ -153,7 +144,7 @@ public abstract class BaseRepository<TEntity, TModel> : IBaseRepository<TEntity,
         }
     }
 
-    public virtual async Task<RepositoryResult<bool>> DeleteAsync(TEntity entity) //public virtual async?? eller går dte även med bara public async
+    public virtual async Task<RepositoryResult<bool>> DeleteAsync(TEntity entity)
     {
         if (entity == null)
         {

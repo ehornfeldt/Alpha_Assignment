@@ -5,7 +5,6 @@ using Domain.Extensions;
 using Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Diagnostics;
-//using Microsoft.AspNetCore.Identity;
 
 namespace Business.Services;
 
@@ -19,7 +18,7 @@ public class UserService(IUserRepository userRepository, UserManager<UserEntity>
 {
     private readonly IUserRepository _userRepository = userRepository;
     private readonly UserManager<UserEntity> _userManager = userManager;
-    //private readonly RoleManager<IdentityRole> _roleManager;    //2.20 i tips och trick backend men detta är VG
+    //private readonly RoleManager<IdentityRole> _roleManager;
 
     public async Task<UserResult> GetUsersAsync()
     {
@@ -42,7 +41,7 @@ public class UserService(IUserRepository userRepository, UserManager<UserEntity>
         {
             var userEntity = formData.MapTo<UserEntity>();
             userEntity.UserName = formData.Email;
-            var result = await _userManager.CreateAsync(userEntity, formData.Password);  //3.06.58 i filmen
+            var result = await _userManager.CreateAsync(userEntity, formData.Password); 
 
             return result.Succeeded
                 ? new UserResult { Succeeded = true, StatusCode = 201 }

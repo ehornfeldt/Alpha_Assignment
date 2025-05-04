@@ -20,9 +20,6 @@ public class ProjectsController(IProjectService projectService) : Controller
     {
         if (!ModelState.IsValid)
         {
-            // Hämta Clients igen om modellen är ogiltig (SelectList återställs annars)
-            //model.Clients = GetClients();
-            //
             ViewData["ShowAddModal"] = true;
             return RedirectToAction("AlphaView", "Alpha");
             //return PartialView("Partials/_AddProjectModalPartial", model);
@@ -63,10 +60,4 @@ public class ProjectsController(IProjectService projectService) : Controller
 
         return RedirectToAction("AlphaView", "Alpha");
     }
-
-    //[HttpDelete]
-    //public IActionResult Delete(string id)
-    //{
-    //    return Json(new { });
-    //}
 }

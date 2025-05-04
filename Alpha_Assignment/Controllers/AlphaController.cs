@@ -25,12 +25,6 @@ public class AlphaController(IProjectService projectService, IClientService clie
         var fullName = $"{user!.FirstName} {user.LastName}";
         ViewBag.FullName = fullName;
 
-        //var allProjects = await GetAllProjects();
-
-        //var filteredProjects = string.IsNullOrEmpty(status.ToString())
-        //    ? allProjects
-        //    : allProjects.Where(p => p.StatusId == status);
-
         var viewModel = new ProjectsViewModel()
         {
             Projects = await GetAllProjects(),
@@ -129,14 +123,4 @@ public class AlphaController(IProjectService projectService, IClientService clie
 
         return new List<SelectListItem>();
     }
-
-    //public async Task<IEnumerable<ProjectViewModel>> FilterProjects(string? searchString)
-    //{
-    //    var projects = await GetAllProjects();
-    //    if (!string.IsNullOrEmpty(searchString))
-    //    {
-    //        projects = projects.Where(p => p.ProjectName!.Contains(searchString, StringComparison.OrdinalIgnoreCase));
-    //    }
-    //    return View("Alpha", projects);
-    //}
 }
